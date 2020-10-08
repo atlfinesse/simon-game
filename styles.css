@@ -3,6 +3,18 @@
 }
 
 .container {
-  background-color: black;
+  position: relative;
+  margin: auto;
+  background-color: white;
   width: 50px;
+}
+
+.squares {
+  width: 30vw;
+  background-color: burlywood;
+  font-size: 3em;
+}
+
+.squares:hover {
+  background-color: coral;
 }
