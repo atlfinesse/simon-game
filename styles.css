@@ -1,20 +1,41 @@
 * {
-  background-color: bisque;
+  background-color: gray;
 }
 
 .container {
   position: relative;
   margin: auto;
-  background-color: white;
-  width: 50px;
+  background-color: black;
+  width: 80vh;
+  display: inline-block;
 }
 
 .squares {
-  width: 30vw;
-  background-color: burlywood;
+  /* background-color: burlywood; */
   font-size: 3em;
 }
 
 .squares:hover {
-  background-color: coral;
+  /* opacity: 0.8; */
+  filter: brightness(90%);
+}
+
+.lightUp {
+  opacity: 0.7;
+}
+
+#blue {
+  background-color: rgb(53, 97, 231);
+}
+
+#red {
+  background-color: rgb(231, 57, 26);
+}
+
+#green {
+  background-color: rgb(123, 219, 27);
+}
+
+#yellow {
+  background-color: rgb(243, 228, 94);
 }
