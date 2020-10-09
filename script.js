@@ -47,7 +47,7 @@ function play() {
 function checkChoices(arr1, arr2) {
   return arr1.toString() === arr2.toString()
 }
-
+///// EVENT LISTENERS
 // player click action event listener
 container.addEventListener('click', (event) => {
   playerChoice.push(event.target.id)
@@ -58,8 +58,6 @@ container.addEventListener('click', (event) => {
     console.log('nope')
   }
 })
-
-
 
 
 // Make variables for player and computer
@@ -74,3 +72,13 @@ container.addEventListener('click', (event) => {
 
 // Make a function to light up 
 // Make function to toggle on 'dimmer' class to show which button was clicked
+
+
+// make sure that both arrays are empty when starting a new round
+
+
+//computer choose random square
+//let player try to choose same square
+  //if square is different player loses
+//compter chooses same square then another random one
+//let player try to choose same squares
