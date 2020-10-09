@@ -3,6 +3,7 @@
 }
 
 .container {
+  position: relative;
   margin: 50px auto;
   width: 350px;
   height: 350px;
@@ -17,6 +18,19 @@
   border: black 5px solid;
   text-align: center;
   line-height: 150px;
+  cursor: pointer;
+}
+
+.score {
+  position: absolute;
+  color: white;
+  background-color: black;
+  font-size: 1.5em;
+  text-align: center;
+  width: 75px;
+  height: 50px;
+  left: 45%;
+  top: 38%;
 }
 
 .squares:hover {
@@ -43,7 +57,7 @@
   border-bottom-left-radius: 25%;
 }
 
-.start {
+#start {
   background-color: silver;
 }
 
