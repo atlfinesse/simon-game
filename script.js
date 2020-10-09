@@ -24,19 +24,26 @@ start.addEventListener('click', () => {
 })
 
 // game run logic
+// setTimeout(() => {
+  
+// }, timeout);
 function play() {
   colorSwitcher = Math.random() * 100
   if (colorSwitcher < 25) {
     blue.classList.add('lightUp')
+    setTimeout((blue.classList.remove('lightUp'), 1000));
     gameChoice.push('blue')
   } else if (colorSwitcher < 50) {
     green.classList.add('lightUp')
+    setTimeout((green.classList.remove('lightUp'), 1000));
     gameChoice.push('green')
   } else if (colorSwitcher < 75) {
     red.classList.add('lightUp')
+    setTimeout((red.classList.remove('lightUp'), 1000));
     gameChoice.push('red')
   } else if (colorSwitcher < 100) {
     yellow.classList.add('lightUp')
+    setTimeout((yellow.classList.remove('lightUp'), 1000));
     gameChoice.push('yellow')
   }
   console.log(gameChoice)
@@ -51,11 +58,14 @@ function checkChoices(arr1, arr2) {
 // player click action event listener
 container.addEventListener('click', (event) => {
   playerChoice.push(event.target.id)
-  // if statement to see if game and player choice are equal
-  if (checkChoices(gameChoice, playerChoice) == true) {
-    console.log('finally')
-  } else {
-    console.log('nope')
+  // if statement to make sure arrays are same length
+  if (gameChoice.length == playerChoice.length) {
+    // if statement to see if game and player choice are equal
+    if (checkChoices(gameChoice, playerChoice) == true) {
+      console.log('finally')
+    } else {
+      console.log('nope')
+    }
   }
 })
 
@@ -82,3 +92,12 @@ container.addEventListener('click', (event) => {
   //if square is different player loses
 //compter chooses same square then another random one
 //let player try to choose same squares
+
+// let round = 4
+
+// for (let i = 0; i <= round; i++) {
+//   setTimeout(play, 1000 * i, gameChoice[i])
+// }
+
+
+// let newRound = setTimeout(play, 2000)
