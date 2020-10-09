@@ -1,23 +1,29 @@
-document.body.addEventListener('click', (event) => {
-  console.log(event.target)
-})
+// document.body.addEventListener('click', (event) => {
+//   console.log(event.target)
+// })
 
-// game board variables
+///// GAME BOARD VARIABLES
 const container = document.querySelector('.container')
 const blue = document.querySelector('#blue')
 const red = document.querySelector('#red')
 const yellow = document.querySelector('#yellow')
 const green = document.querySelector('#green')
-// under the hood variables
+const start = document.querySelector('.start')
+///// UNDER THE HOOD VARIABLES
 let gameChoice = []
 let playerChoice = []
 let colorSwitcher = 0
 
-// side button variables
+/////// SIDE BUTTON VARIABLES
 
 
 
-// random logic
+// start logic
+start.addEventListener('click', () => {
+  play()
+})
+
+// game run logic
 function play() {
   colorSwitcher = Math.random() * 100
   if (colorSwitcher < 25) {
@@ -33,17 +39,27 @@ function play() {
     yellow.classList.add('lightUp')
     gameChoice.push('yellow')
   }
+  console.log(gameChoice)
   return gameChoice
+}
+///// FUNCTIONS THAT MAKE THE GAME WORK
+// function to check if the player choice and game choice is equal
+function checkChoices(arr1, arr2) {
+  return arr1.toString() === arr2.toString()
 }
 
 // player click action event listener
 container.addEventListener('click', (event) => {
   playerChoice.push(event.target.id)
+  // if statement to see if game and player choice are equal
+  if (checkChoices(gameChoice, playerChoice) == true) {
+    console.log('finally')
+  } else {
+    console.log('nope')
+  }
 })
 
-if (playerChoice === gameChoice) {
-  console.log('yes')
-}
+
 
 
 // Make variables for player and computer
