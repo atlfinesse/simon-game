@@ -59,14 +59,14 @@ function replayGameChoice() {
   for (let i = 0; i < gameChoice.length; i++) {
     console.log(gameChoice[i])
     if (gameChoice[i] == 'blue') {
-      setTimeout(signifyBlue, i * 1000)
+        setTimeout(signifyBlue, i * 1000)
     } else if (gameChoice[i] == 'green') {
-      setTimeout(signifyGreen, i * 1000)
+        setTimeout(signifyGreen, i * 1000)
     } else if (gameChoice[i] == 'red') {
-      setTimeout(signifyRed, i * 1000)
+        setTimeout(signifyRed, i * 1000)
     } else if (gameChoice[i] == 'yellow') {
-      setTimeout(signifyYellow, i * 1000)
-    }
+        setTimeout(signifyYellow, i * 1000)    }
+    console.log('replayGameChoice')
   }
 }
 // functions to light and dim colors
@@ -74,39 +74,44 @@ function signifyBlue() {
   blue.classList.add('lightUp')
   setTimeout(function () {
     blue.classList.remove('lightUp')
-  }, 1500)
+  }, 800)
 }
 
 function signifyGreen() {
   green.classList.add('lightUp')
   setTimeout(function () {
     green.classList.remove('lightUp')
-  }, 1500)
+  }, 800)
 }
 
 function signifyRed() {
   red.classList.add('lightUp')
   setTimeout(function () {
     red.classList.remove('lightUp')
-  }, 1500)
+  }, 800)
 }
 
 function signifyYellow() {
   yellow.classList.add('lightUp')
   setTimeout(function () {
     yellow.classList.remove('lightUp')
-  }, 1500)
+  }, 800)
 }
 
-//function to restart the game ************
+// function to restart the game ************
 // function reset() {
 //   gameChoice = []
 //   playerChoice = []
 // }
 
+// Function to empty the playerChoice array
+function emptyPlayer() {
+  playerChoice = []
+}
+
 
 ///// EVENT LISTENERS
-// function to start new game
+// click start button to start new game
 start.addEventListener('click', () => {
   newColor()
 })
@@ -123,7 +128,9 @@ container.addEventListener('click', (event) => {
   if (gameChoice.length == playerChoice.length) {
     // if statement to see if game and player choice are equal
     if (checkChoices(gameChoice, playerChoice) == true) {
+      setTimeout(nextRound, 2000)
       console.log('correct')
+      // else the game is over
     } else {
       console.log('incorrect')
     }
@@ -154,15 +161,16 @@ container.addEventListener('click', (event) => {
 //   setTimeout(play, 1000 * i, gameChoice[i])
 // }
 
-function go() {
-for (let i = 0; i <= round; i++) {
-  console.log(gameChoice)
-  gameChoice.push(i)
-}
-  // increase round by 1
-  round ++
-  console.log(`round ${round}`)
-}
+// *************
+// function go() {
+// for (let i = 0; i <= round; i++) {
+//   console.log(gameChoice)
+//   gameChoice.push(i)
+// }
+//   // increase round by 1
+//   round ++
+//   console.log(`round ${round}`)
+// }
 
 // game play function
   //first do replayGameChoice function(replay whatever the array already has and light them up)
@@ -180,3 +188,13 @@ for (let i = 0; i <= round; i++) {
 // ALL ******** NEED TO BE FIXED OR MOVED
 
 
+function nextRound() {
+  emptyPlayer()
+  setTimeout(function () {
+    replayGameChoice()
+    setTimeout(function () {
+    newColor()
+    }, 1000);
+  }, 1000);
+  console.log('nextRound')
+}

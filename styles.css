@@ -53,7 +53,7 @@
 }
 
 #yellow {
-  background-color: rgb(204, 184, 8);
+  background-color: rgb(233, 218, 87);
   border-bottom-right-radius: 25%;
 }
 
@@ -77,9 +77,9 @@
 
 .start {
   position: absolute;
-  top: 80%;
+  top: 70%;
 }
 
 .lightUp {
-  filter: brightness(150%);
+  filter: brightness(200%);
 }
