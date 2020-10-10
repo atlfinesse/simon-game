@@ -13,7 +13,7 @@ const score = document.querySelector('.score')
 let gameChoice = []
 let playerChoice = []
 let colorSwitcher = 0
-let round = 0
+let round = 1
 /////// SIDE BUTTON VARIABLES
 const start = document.querySelector('#start')
 const restart = document.querySelector('#restart')
@@ -53,6 +53,12 @@ function newColor() {
   }
   console.log(gameChoice)
   return gameChoice
+}
+
+function newColorLoop() {
+  for (let i = 0; i < gameChoice.length; i++) {
+    setTimeout(newColor, i * 1000)
+  }
 }
 // function to signify whats already in the array without pushing anything
 function replayGameChoice() {
@@ -99,10 +105,11 @@ function signifyYellow() {
 }
 
 // function to restart the game ************
-// function reset() {
-//   gameChoice = []
-//   playerChoice = []
-// }
+function reset() {
+  gameChoice = []
+  playerChoice = []
+  round = 1
+}
 
 // Function to empty the playerChoice array
 function emptyPlayer() {
@@ -132,6 +139,7 @@ container.addEventListener('click', (event) => {
       console.log('correct')
       // else the game is over
     } else {
+      reset()
       console.log('incorrect')
     }
   }
@@ -155,7 +163,7 @@ container.addEventListener('click', (event) => {
 //compter chooses same squares then another random one
 //let player try to choose same squares
 
-// let round = 4
+// let round = 1
 
 // for (let i = 0; i <= round; i++) {
 //   setTimeout(play, 1000 * i, gameChoice[i])
@@ -190,11 +198,16 @@ container.addEventListener('click', (event) => {
 
 function nextRound() {
   emptyPlayer()
-  setTimeout(function () {
-    replayGameChoice()
-    setTimeout(function () {
-    newColor()
-    }, 1000);
-  }, 1000);
+  replayGameChoice()
+  setTimeout(newColor, round * 1000)
+  round ++
   console.log('nextRound')
 }
+
+// setTimeout(function () {
+//   replayGameChoice()
+//   setTimeout(function () {
+//     newColor()
+//   }, 1000);
+// }, 1000);
+
