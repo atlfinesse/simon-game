@@ -59,13 +59,13 @@ function replayGameChoice() {
   for (let i = 0; i < gameChoice.length; i++) {
     console.log(gameChoice[i])
     if (gameChoice[i] == 'blue') {
-      signifyBlue()
+      setTimeout(signifyBlue, i * 1000)
     } else if (gameChoice[i] == 'green') {
-      signifyGreen()
+      setTimeout(signifyGreen, i * 1000)
     } else if (gameChoice[i] == 'red') {
-      signifyRed()
+      setTimeout(signifyRed, i * 1000)
     } else if (gameChoice[i] == 'yellow') {
-      signifyYellow()
+      setTimeout(signifyYellow, i * 1000)
     }
   }
 }
@@ -178,3 +178,5 @@ for (let i = 0; i <= round; i++) {
 /////// EXTRA LOOSE ENDS
 // make sure you can't click score becasue that will push an empty string into the arry of playerChoice
 // ALL ******** NEED TO BE FIXED OR MOVED
+
+

@@ -14,7 +14,7 @@
   font-size: 3em;
   height: 150px;
   width: 150px;
-  float: right;
+  float: left;
   border: black 5px solid;
   text-align: center;
   line-height: 150px;
@@ -29,7 +29,7 @@
   text-align: center;
   width: 75px;
   height: 50px;
-  left: 45%;
+  right: 42%;
   top: 38%;
 }
 
@@ -47,14 +47,14 @@
   border-top-right-radius: 25%;
 }
 
-#yellow {
-  background-color: rgb(243, 228, 94);
-  border-bottom-right-radius: 25%;
-}
-
 #green {
   background-color: rgb(123, 219, 27);
   border-bottom-left-radius: 25%;
+}
+
+#yellow {
+  background-color: rgb(204, 184, 8);
+  border-bottom-right-radius: 25%;
 }
 
 #start {
@@ -77,9 +77,8 @@
 
 .start {
   position: absolute;
-  top: 80%
+  top: 80%;
 }
-
 
 .lightUp {
   filter: brightness(150%);
