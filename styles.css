@@ -1,6 +1,6 @@
 /* FULL SCREEN */
 html {
-  background-color: gray;
+  background-color: rgb(71, 64, 64);
 }
 /* GAME BOARD */
 .container {
@@ -29,7 +29,7 @@ html {
   font-size: 1.5em;
   text-align: center;
   width: 75px;
-  height: 50px;
+  height: 60px;
   right: 42%;
   top: 38%;
 }
@@ -58,8 +58,8 @@ html {
   border-bottom-right-radius: 25%;
 }
 
-#start {
-  background-color: silver;
+button {
+  font-size: 1.5em;
 }
 
 .squares:active {
@@ -77,20 +77,17 @@ html {
 /* SIDE BUTTONS */
 .side-buttons {
   position: absolute;
-  top: 25%;
+  top: 15%;
   padding-top: 10%;
 }
 
-.start {
-  position: absolute;
-  top: 70%;
-}
-
 #high-score {
+  background-color: teal;
   position: fixed;
-  top: 35%;
+  top: 25%;
   right: 10%;
   font-size: 1.5em;
+  border-radius: 5px;
 }
 
 /* MODAL */
