@@ -14,10 +14,14 @@ let gameChoice = []
 let playerChoice = []
 let colorSwitcher = 0
 let round = 1
-/////// SIDE BUTTON VARIABLES
+///// SIDE BUTTON VARIABLES
 const start = document.querySelector('#start')
 const restart = document.querySelector('#restart')
-
+const highScore = document.querySelector('#high-score')
+///// SCREENS AND VISUALS
+const gameOverScreen = document.querySelector('#game-over-screen')
+const finalScore = document.querySelector('#final-score')
+const showRules = document.querySelector('#show-rules')
 
 // start logic ***********
 
@@ -62,6 +66,7 @@ function newColorLoop() {
 }
 // function to signify whats already in the array without pushing anything
 function replayGameChoice() {
+  score.innerText = `Score: ${round}`
   for (let i = 0; i < gameChoice.length; i++) {
     console.log(gameChoice[i])
     if (gameChoice[i] == 'blue') {
@@ -82,21 +87,18 @@ function signifyBlue() {
     blue.classList.remove('lightUp')
   }, 800)
 }
-
 function signifyGreen() {
   green.classList.add('lightUp')
   setTimeout(function () {
     green.classList.remove('lightUp')
   }, 800)
 }
-
 function signifyRed() {
   red.classList.add('lightUp')
   setTimeout(function () {
     red.classList.remove('lightUp')
   }, 800)
 }
-
 function signifyYellow() {
   yellow.classList.add('lightUp')
   setTimeout(function () {
@@ -105,7 +107,7 @@ function signifyYellow() {
 }
 
 // function to restart the game ************
-function reset() {
+function scoreReset() {
   gameChoice = []
   playerChoice = []
   round = 1
@@ -117,16 +119,16 @@ function emptyPlayer() {
 }
 
 
-///// EVENT LISTENERS
+///// GAMEPLAY EVENT LISTENERS
 // click start button to start new game
 start.addEventListener('click', () => {
   newColor()
 })
-// restart game
-// restart.addEventListener('click', () => {
-//   reset()
-//   console.log(gameChoice)
-// })
+// click restart to start new game
+restart.addEventListener('click', () => {
+  gameOverScreen.classList.add('hidden')
+})
+//click rules to show rules modal
 
 // player click action event listener
 container.addEventListener('click', (event) => {
@@ -139,11 +141,16 @@ container.addEventListener('click', (event) => {
       console.log('correct')
       // else the game is over
     } else {
-      reset()
+      scoreReset()
       console.log('incorrect')
+      setTimeout(() => {
+        gameOverScreen.classList.remove('hidden')
+      }, 1000);
     }
   }
 })
+
+///// SIDE BUTTON EVENT LISTENERS
 
 // Make variables for player and computer
   // Each will hold an array and if player != game , the player loses
@@ -155,30 +162,13 @@ container.addEventListener('click', (event) => {
   // Else wrong -->  end game
 
 
-// Make a function to light up
-
 //computer choose random square
 //let player try to choose same square
   //if square is different player loses
 //compter chooses same squares then another random one
 //let player try to choose same squares
 
-// let round = 1
 
-// for (let i = 0; i <= round; i++) {
-//   setTimeout(play, 1000 * i, gameChoice[i])
-// }
-
-// *************
-// function go() {
-// for (let i = 0; i <= round; i++) {
-//   console.log(gameChoice)
-//   gameChoice.push(i)
-// }
-//   // increase round by 1
-//   round ++
-//   console.log(`round ${round}`)
-// }
 
 // game play function
   //first do replayGameChoice function(replay whatever the array already has and light them up)
@@ -200,14 +190,12 @@ function nextRound() {
   emptyPlayer()
   replayGameChoice()
   setTimeout(newColor, round * 1000)
+  finalScore.innerText = `Final Score: ${round}`
   round ++
   console.log('nextRound')
 }
 
-// setTimeout(function () {
-//   replayGameChoice()
-//   setTimeout(function () {
-//     newColor()
-//   }, 1000);
-// }, 1000);
+
+
+
 

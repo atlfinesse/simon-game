@@ -1,7 +1,8 @@
-* {
+/* FULL SCREEN */
+html {
   background-color: gray;
 }
-
+/* GAME BOARD */
 .container {
   position: relative;
   margin: 50px auto;
@@ -69,6 +70,11 @@
   transform: translate(4px, 4px);
 }
 
+.lightUp {
+  filter: brightness(200%);
+}
+
+/* SIDE BUTTONS */
 .side-buttons {
   position: absolute;
   top: 25%;
@@ -80,6 +86,37 @@
   top: 70%;
 }
 
-.lightUp {
-  filter: brightness(200%);
+#high-score {
+  position: fixed;
+  top: 35%;
+  right: 10%;
+  font-size: 1.5em;
 }
+
+/* MODAL */
+.hidden {
+  display: none;
+}
+
+.modal-background {
+  background-color: rgba(0, 0, 0, 0.4);
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+}
+
+.modal-textbox {
+  background-color: white;
+  height: 40%;
+  width: 60%;
+  border-radius: 10px;
+  margin: 25% auto;
+  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.7);
+  padding: 2%;
+  text-align: center;
+  line-height: 70px;
+}
+
