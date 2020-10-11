@@ -1,6 +1,4 @@
-// document.body.addEventListener('click', (event) => {
-//   console.log(event.target)
-// })
+////////// VARIABLES //////////
 
 ///// GAME BOARD VARIABLES
 const container = document.querySelector('.container')
@@ -14,26 +12,24 @@ let gameChoice = []
 let playerChoice = []
 let colorSwitcher = 0
 let round = 1
+let record = 0
+
 ///// SIDE BUTTON VARIABLES
 const start = document.querySelector('#start')
 const restart = document.querySelector('#restart')
 const highScore = document.querySelector('#high-score')
-///// SCREENS AND VISUALS
+///// SCREENS
 const gameOverScreen = document.querySelector('#game-over-screen')
 const finalScore = document.querySelector('#final-score')
-const showRules = document.querySelector('#show-rules')
-
-// start logic ***********
+///// SOUNDS
+const redSound = document.querySelector('#redSound')
+const blueSound = document.querySelector('#blueSound')
+const greenSound = document.querySelector('#greenSound')
+const yellowSound = document.querySelector('#yellowSound')
 
 
 ////////// GAME RUN LOGIC //////////
 ///// FUNCTIONS THAT MAKE THE GAME WORK
-
-
-
-//******** need a function to start next round after player input
-
-
 
 // function to check if the player choice and game choice is equal
 function checkChoices(arr1, arr2) {
@@ -55,7 +51,9 @@ function newColor() {
     signifyYellow()
     gameChoice.push('yellow')
   }
-  console.log(gameChoice)
+  setTimeout(() => {
+    container.classList.remove('dont-cheat')
+  }, 1000);
   return gameChoice
 }
 
@@ -66,9 +64,8 @@ function newColorLoop() {
 }
 // function to signify whats already in the array without pushing anything
 function replayGameChoice() {
-  score.innerText = `Score: ${round}`
+  score.innerText = `Score ${round}`
   for (let i = 0; i < gameChoice.length; i++) {
-    console.log(gameChoice[i])
     if (gameChoice[i] == 'blue') {
         setTimeout(signifyBlue, i * 1000)
     } else if (gameChoice[i] == 'green') {
@@ -77,80 +74,125 @@ function replayGameChoice() {
         setTimeout(signifyRed, i * 1000)
     } else if (gameChoice[i] == 'yellow') {
         setTimeout(signifyYellow, i * 1000)    }
-    console.log('replayGameChoice')
   }
 }
 // functions to light and dim colors
 function signifyBlue() {
   blue.classList.add('lightUp')
+  blueBeep()
   setTimeout(function () {
     blue.classList.remove('lightUp')
   }, 800)
 }
 function signifyGreen() {
   green.classList.add('lightUp')
+  greenBeep()
   setTimeout(function () {
     green.classList.remove('lightUp')
   }, 800)
 }
 function signifyRed() {
   red.classList.add('lightUp')
+  redBeep()
   setTimeout(function () {
     red.classList.remove('lightUp')
   }, 800)
 }
 function signifyYellow() {
   yellow.classList.add('lightUp')
+  yellowBeep()
   setTimeout(function () {
     yellow.classList.remove('lightUp')
   }, 800)
 }
+// functions to play beeps
+function redBeep() {
+  redSound.play();
+}
+function blueBeep() {
+  blueSound.play();
+}
+function greenBeep() {
+  greenSound.play();
+}
+function yellowBeep() {
+  yellowSound.play();
+}
 
-// function to restart the game ************
+// function to restart the game
 function scoreReset() {
   gameChoice = []
   playerChoice = []
   round = 1
 }
 
-// Function to empty the playerChoice array
+// function to empty the playerChoice array
 function emptyPlayer() {
   playerChoice = []
+}
+// function to update the high score
+function updateHighScore() {
+  if (round > record) {
+    record = round
+    highScore.innerText = `High Score ${record}`
+  }
+}
+// function to go to next round
+function nextRound() {
+  emptyPlayer()
+  replayGameChoice()
+  setTimeout(newColor, round * 1000)
+  finalScore.innerText = `Final Score: ${round}`
+  round++
 }
 
 
 ///// GAMEPLAY EVENT LISTENERS
 // click start button to start new game
 start.addEventListener('click', () => {
+  scoreReset()
   newColor()
 })
-// click restart to start new game
+// close game over screen
 restart.addEventListener('click', () => {
   gameOverScreen.classList.add('hidden')
 })
-//click rules to show rules modal
+// plays beep on click
+red.addEventListener('click', () => {
+  redBeep()
+})
+blue.addEventListener('click', () => {
+  blueBeep()
+})
+green.addEventListener('click', () => {
+  greenBeep()
+})
+yellow.addEventListener('click', () => {
+  yellowBeep()
+})
 
 // player click action event listener
 container.addEventListener('click', (event) => {
+  // pushes color to playerChoice array
   playerChoice.push(event.target.id)
   // if statement to make sure arrays are same length
   if (gameChoice.length == playerChoice.length) {
     // if statement to see if game and player choice are equal
     if (checkChoices(gameChoice, playerChoice) == true) {
       setTimeout(nextRound, 2000)
-      console.log('correct')
+      container.classList.add('dont-cheat')
       // else the game is over
     } else {
+      finalScore.innerText = `Final Score: ${round}`
+      updateHighScore()
       scoreReset()
-      console.log('incorrect')
       setTimeout(() => {
         gameOverScreen.classList.remove('hidden')
       }, 1000);
+      score.innerText = `Score: 0`
     }
   }
 })
-
-///// SIDE BUTTON EVENT LISTENERS
 
 // Make variables for player and computer
   // Each will hold an array and if player != game , the player loses
@@ -178,24 +220,3 @@ container.addEventListener('click', (event) => {
     // player will click in a sequence and try to match
   //if player is correct redo game play function
       //else game is over
-
-
-
-/////// EXTRA LOOSE ENDS
-// make sure you can't click score becasue that will push an empty string into the arry of playerChoice
-// ALL ******** NEED TO BE FIXED OR MOVED
-
-
-function nextRound() {
-  emptyPlayer()
-  replayGameChoice()
-  setTimeout(newColor, round * 1000)
-  finalScore.innerText = `Final Score: ${round}`
-  round ++
-  console.log('nextRound')
-}
-
-
-
-
-
