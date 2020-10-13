@@ -367,16 +367,16 @@ hardModeButton.addEventListener('click', () => {
 // })
 
 // function sayHi(event) {
-//   if (event.key === 'd') {
+//   if (event.key === 'd')
 //     console.log('Dayna is still the utmost cutiest')
 //   }
 // }
 // document.addEventListener('keydown', sayHi())
 
-window.addEventListener('keydown', (event) => {
-  if (event.key === 'd') {
-    console.log('yes')
-  }
-  console.log(event)
-})
+// window.addEventListener('keydown', (event) => {
+//   if (event.key === 'd') {
+//     console.log('yes')
+//   }
+//   console.log(event)
+// })
 
