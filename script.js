@@ -1,3 +1,6 @@
+document.body.addEventListener('click', (event) => {
+  console.log(event.target)
+})
 ////////// VARIABLES //////////
 
 ///// GAME BOARD VARIABLES
@@ -27,6 +30,27 @@ const blueSound = document.querySelector('#blueSound')
 const greenSound = document.querySelector('#greenSound')
 const yellowSound = document.querySelector('#yellowSound')
 
+/////// HARD MODE ENABLED ///////
+const white = document.querySelector('#white')
+const orange = document.querySelector('#orange')
+const purple = document.querySelector('#purple')
+const magenta = document.querySelector('#magenta')
+const hardModeButton = document.querySelector('#hard-mode-button')
+let hardMode = false
+function enableHardMode() {
+  hardMode = true
+  white.classList.remove('hidden')
+  orange.classList.remove('hidden')
+  purple.classList.remove('hidden')
+  magenta.classList.remove('hidden')
+}
+///// SOUNDS
+const whiteSound = document.querySelector('#whiteSound')
+const orangeSound = document.querySelector('#orangeSound')
+const purpleSound = document.querySelector('#purpleSound')
+const magentaSound = document.querySelector('#magentaSound')
+
+
 
 ////////// GAME RUN LOGIC //////////
 ///// FUNCTIONS THAT MAKE THE GAME WORK
@@ -35,27 +59,67 @@ const yellowSound = document.querySelector('#yellowSound')
 function checkChoices(arr1, arr2) {
   return arr1.toString() === arr2.toString()
 }
-// funciton to signify a new color and push that color to gameChoice array
+// function to signify a new color and push that color to gameChoice array
+
 function newColor() {
-  colorSwitcher = Math.random() * 100
-  if (colorSwitcher < 25) {
-    signifyBlue()
-    gameChoice.push('blue')
-  } else if (colorSwitcher < 50) {
-    signifyGreen()
-    gameChoice.push('green')
-  } else if (colorSwitcher < 75) {
-    signifyRed()
-    gameChoice.push('red')
-  } else if (colorSwitcher < 100) {
-    signifyYellow()
-    gameChoice.push('yellow')
+  if (hardMode = true) {
+    colorSwitcher = Math.random() * 100
+    if (colorSwitcher < 12.5) {
+      signifyBlue()
+      gameChoice.push('blue')
+    } else if (colorSwitcher < 25) {
+      signifyGreen()
+      gameChoice.push('green')
+    } else if (colorSwitcher < 37.5) {
+      signifyRed()
+      gameChoice.push('red')
+    } else if (colorSwitcher < 50) {
+      signifyYellow()
+      gameChoice.push('yellow')
+    } else if (colorSwitcher < 62.5) {
+      signifyWhite()
+      gameChoice.push('white')
+    } else if (colorSwitcher < 75) {
+      signifyOrange()
+      gameChoice.push('orange')
+    } else if (colorSwitcher < 87.5) {
+      signifyPurple()
+      gameChoice.push('purple')
+    } else if (colorSwitcher < 100) {
+      signifyMagenta()
+      gameChoice.push('magenta')
+    } else 
+    setTimeout(() => {
+      container.classList.remove('dont-cheat')
+    }, 1000);
+    return gameChoice
+  } else {
+    colorSwitcher = Math.random() * 100
+    if (colorSwitcher < 25) {
+      signifyBlue()
+      gameChoice.push('blue')
+    } else if (colorSwitcher < 50) {
+      signifyGreen()
+      gameChoice.push('green')
+    } else if (colorSwitcher < 75) {
+      signifyRed()
+      gameChoice.push('red')
+    } else if (colorSwitcher < 100) {
+      signifyYellow()
+      gameChoice.push('yellow')
+    }
+    setTimeout(() => {
+      container.classList.remove('dont-cheat')
+    }, 1000);
+    return gameChoice
   }
-  setTimeout(() => {
-    container.classList.remove('dont-cheat')
-  }, 1000);
-  return gameChoice
 }
+
+// if (condition) {
+  
+// } else {
+  
+// }
 
 function newColorLoop() {
   for (let i = 0; i < gameChoice.length; i++) {
@@ -73,8 +137,18 @@ function replayGameChoice() {
     } else if (gameChoice[i] == 'red') {
         setTimeout(signifyRed, i * 1000)
     } else if (gameChoice[i] == 'yellow') {
-        setTimeout(signifyYellow, i * 1000)    }
+        setTimeout(signifyYellow, i * 1000)
+    } else if (gameChoice[i] == 'white') {
+      setTimeout(signifyWhite, i * 1000)
+    } else if (gameChoice[i] == 'orange') {
+      setTimeout(signifyOrange, i * 1000)
+    } else if (gameChoice[i] == 'purple') {
+      setTimeout(signifyPurple, i * 1000)
+    } else if (gameChoice[i] == 'magenta') {
+      setTimeout(signifyMagenta, i * 1000)
+    }
   }
+  container.classList.remove('dont-cheat')
 }
 // functions to light and dim colors
 function signifyBlue() {
@@ -105,6 +179,34 @@ function signifyYellow() {
     yellow.classList.remove('lightUp')
   }, 800)
 }
+function signifyWhite() {
+  white.classList.add('lightUp')
+  whiteBeep()
+  setTimeout(function () {
+    white.classList.remove('lightUp')
+  }, 800)
+}
+function signifyOrange() {
+  orange.classList.add('lightUp')
+  orangeBeep()
+  setTimeout(function () {
+    orange.classList.remove('lightUp')
+  }, 800)
+}
+function signifyPurple() {
+  purple.classList.add('lightUp')
+  purpleBeep()
+  setTimeout(function () {
+    purple.classList.remove('lightUp')
+  }, 800)
+}
+function signifyMagenta() {
+  magenta.classList.add('lightUp')
+  magentaBeep()
+  setTimeout(function () {
+    magenta.classList.remove('lightUp')
+  }, 800)
+}
 // functions to play beeps
 function redBeep() {
   redSound.play();
@@ -117,6 +219,18 @@ function greenBeep() {
 }
 function yellowBeep() {
   yellowSound.play();
+}
+function whiteBeep() {
+  whiteSound.play();
+}
+function orangeBeep() {
+  orangeSound.play();
+}
+function purpleBeep() {
+  purpleSound.play();
+}
+function magentaBeep() {
+  magentaSound.play();
 }
 
 // function to restart the game
@@ -170,6 +284,18 @@ green.addEventListener('click', () => {
 yellow.addEventListener('click', () => {
   yellowBeep()
 })
+white.addEventListener('click', () => {
+  whiteBeep()
+})
+orange.addEventListener('click', () => {
+  purpleBeep()
+})
+purple.addEventListener('click', () => {
+  orangeBeep()
+})
+magenta.addEventListener('click', () => {
+  magentaBeep()
+})
 
 // player click action event listener
 container.addEventListener('click', (event) => {
@@ -185,6 +311,7 @@ container.addEventListener('click', (event) => {
     } else {
       finalScore.innerText = `Final Score: ${round}`
       updateHighScore()
+      //hard mode
       scoreReset()
       setTimeout(() => {
         gameOverScreen.classList.remove('hidden')
@@ -192,6 +319,10 @@ container.addEventListener('click', (event) => {
       score.innerText = `Score: 0`
     }
   }
+})
+// enable hard mode
+hardModeButton.addEventListener('click', () => {
+  enableHardMode()
 })
 
 // Make variables for player and computer
@@ -220,3 +351,32 @@ container.addEventListener('click', (event) => {
     // player will click in a sequence and try to match
   //if player is correct redo game play function
       //else game is over
+
+
+
+
+
+
+// console.log(Math.floor(Math.random() * colors.length))
+// Math.floor(Math.random() * colors.length)
+
+// document.addEventListener('keydown', (event) {
+//   if (event.keyCode == 'k') {
+//     console.log('nice')
+//   }
+// })
+
+// function sayHi(event) {
+//   if (event.key === 'd') {
+//     console.log('Dayna is still the utmost cutiest')
+//   }
+// }
+// document.addEventListener('keydown', sayHi())
+
+window.addEventListener('keydown', (event) => {
+  if (event.key === 'd') {
+    console.log('yes')
+  }
+  console.log(event)
+})
+

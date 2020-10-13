@@ -22,6 +22,21 @@ html {
   cursor: pointer;
 }
 
+.circles {
+  z-index: 1;
+  height: 75px;
+  width: 75px;
+  float: left;
+  border: black 5px solid;
+  position: absolute;
+  border-radius: 25px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 70px;
+  font-size: 1.5em;
+  cursor: pointer;
+}
+
 .score {
   position: absolute;
   color: white;
@@ -33,6 +48,7 @@ html {
   right: 44%;
   top: 38%;
   pointer-events: none;
+  z-index: 2;
 }
 
 .squares:hover {
@@ -59,13 +75,45 @@ html {
   border-bottom-right-radius: 25%;
 }
 
+.circles:hover {
+  filter: brightness(45%);
+}
+
+#white {
+  left: 20%;
+  top: 20%;
+  background-color: rgb(185, 184, 184);
+}
+
+#orange {
+  left: 47%;
+  top: 20%;
+  background-color: #ff8800;
+}
+
+#purple {
+  left: 20%;
+  top: 47%;
+  background-color: #671d99;
+}
+
+#magenta {
+  left: 47%;
+  top: 47%;
+  background-color: magenta;
+}
+
 button {
   font-size: 1.5em;
 }
 
 .squares:active {
-  background-color: #3e8e41;
-  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+  transform: translateX(4px);
+  transform: translate(4px, 4px);
+}
+
+.circles:active {
   transform: translateY(4px);
   transform: translateX(4px);
   transform: translate(4px, 4px);
@@ -98,12 +146,16 @@ button {
   display: none;
 }
 
+.hard-mode {
+  /* display: none; */
+}
+
 .modal-background {
   background-color: rgba(0, 0, 0, 0.4);
   position: fixed;
   top: 0;
   left: 0;
-  height: 100%;
+  height: 120%;
   width: 100%;
   z-index: 1;
 }
