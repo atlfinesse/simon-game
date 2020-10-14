@@ -1,6 +1,8 @@
 /* FULL SCREEN */
 html {
   background-color: rgb(71, 64, 64);
+  font-family: 'Lobster', cursive;
+  background-color: #a689c2;
 }
 /* GAME BOARD */
 .container {
@@ -12,7 +14,7 @@ html {
 }
 
 ul {
-  color: #ff8800;
+  color: #0004ff;
   padding-top: 40%;
 }
 

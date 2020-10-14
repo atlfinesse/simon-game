@@ -289,7 +289,7 @@ magenta.addEventListener("click", () => {
 
 // keyboard event listeners
 window.document.addEventListener('keydown', (event) => {
-  if (event.key === '/') {
+  if (event.key === '=') {
     keyboardInput = true
     keyboard.innerText = 'Keyboard Input On'
     keyboard.style.color = 'green'
